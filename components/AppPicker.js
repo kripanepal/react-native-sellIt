@@ -12,7 +12,7 @@ function AppPicker({ icon, items, placeholder, selectedItem, onSelectItem }) {
     const [show, setShow] = useState(false);
     return (
         <>
-            <TouchableWithoutFeedback onPress={() => setShow(!show)}>
+            <TouchableWithoutFeedback onPress={() => setShow(!show)} >
 
                 <View style={styles.container}>
                     {icon && <MaterialCommunityIcons name={icon} size={25} color={colors.medium} />}

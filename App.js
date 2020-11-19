@@ -23,6 +23,7 @@ import { TextInput } from 'react-native-gesture-handler';
 import AppTextInput from './components/AppTextInput';
 import AppPicker from './components/AppPicker';
 import LoginScreen from './screens/LoginScreen';
+import ListingEditScreen from './screens/ListingEditScreen';
 
 const data = [
   { label: "Furniture", value: 1 },
@@ -35,9 +36,9 @@ export default function App() {
   const [category, setCategory] = useState();
 
   return (
-    <View style={styles.main} >
-      <LoginScreen />
-    </View>
+    <Screen style={styles.main} >
+      <ListingEditScreen />
+    </Screen>
   );
 }
 
