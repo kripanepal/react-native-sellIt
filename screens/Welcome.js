@@ -2,8 +2,9 @@ import React from 'react';
 import { Image, View, StyleSheet, StatusBar, Text } from 'react-native';
 import AppButton from '../components/AppButton';
 import colors from '../config/colors';
+import routes from '../Navigation/routes';
 
-function Welcome() {
+function Welcome({ navigation }) {
 
     return (
         <View style={styles.main}>
@@ -13,13 +14,15 @@ function Welcome() {
             }} />
 
             <View style={styles.content}>
-                <Image style={styles.logo} resizeMode={"contain"} source={require('../assets/icon.png')} />
+                <Image style={styles.logo} resizeMode={"contain"}
+                    source={{ uri: 'https://i.pinimg.com/564x/33/b8/69/33b869f90619e81763dbf1fccc896d8d.jpg' }}
+                />
                 <Text style={styles.tagLine}>Sell it!</Text>
 
             </View>
             <View style={styles.buttons}>
-                <AppButton title={'Login'} color='primary' />
-                <AppButton title={'Register'} color='secondary' />
+                <AppButton title={'Login'} color='primary' onPress={() => navigation.navigate(routes.LOGIN)} />
+                <AppButton title={'Register'} color='secondary' onPress={() => navigation.navigate(routes.REGISTER)} />
 
 
             </View>

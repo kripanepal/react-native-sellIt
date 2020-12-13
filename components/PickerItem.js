@@ -4,12 +4,12 @@ import { } from 'react-native-gesture-handler';
 import colors from '../config/colors';
 import AppText from './AppText';
 
-function PickerItem({ label, onPress }) {
+function PickerItem({ item, onPress }) {
 
     return (
 
         <TouchableHighlight onPress={onPress} underlayColor={colors.light}>
-            <AppText style={styles.text}>{label}</AppText>
+            <AppText style={styles.text}>{item.label}</AppText>
         </TouchableHighlight>
     );
 }

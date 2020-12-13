@@ -5,9 +5,9 @@ import { TextInput } from 'react-native-gesture-handler';
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import colors from '../config/colors';
 
-function AppTextInput({ icon, ...other }) {
+function AppTextInput({ icon, width = "100%", ...other }) {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { width }]}>
             { icon && <MaterialCommunityIcons name={icon} size={25} color={colors.medium} />}
             <TextInput style={styles.text}{...other} />
         </View>
@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
         backgroundColor: colors.light,
         borderRadius: 25,
         flexDirection: 'row',
-        width: '100%',
         marginVertical: 10,
         padding: 15,
         alignItems: 'center'

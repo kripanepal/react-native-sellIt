@@ -1,36 +1,45 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, Button, StyleSheet, Text } from 'react-native';
+import { FlatList, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import Card from '../components/Card';
-import Screen from '../components/Screen';
+import listingsApi from '../api/listings'
 import colors from '../config/colors';
+import routes from '../Navigation/routes';
+import AppText from '../components/AppText';
+import AppButton from '../components/AppButton';
+import useApi from '../hooks/useApi';
+function ListingScreen({ navigation }) {
+    const { data: listings, error, loading, request: loadListings } = useApi(listingsApi.getListings)
 
-function ListingScreen(props) {
-    const listings = [
-        { id: 1, title: "Jacket", price: 100, image: "https://picsum.photos/200/100" },
-        { id: 2, title: "Couch", price: 500, image: "https://picsum.photos/400/400" },
-        { id: 3, title: "Phone", price: 999.99, image: "https://picsum.photos/200" }
-    ]
+    useEffect(() => {
+        loadListings()
+    }, [])
+
+
     return (
-
-        <Screen style={styles.screen}>
+        <>
+            {error && <>
+                <AppText>Something Went wrong</AppText>
+                <AppButton onPress={loadListings} title='Reload' />
+            </>}
+            { loading && <ActivityIndicator size="large" color="#0000ff" />}
             <FlatList data={listings}
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}
                 keyExtractor={(item) => item.id.toString()}
-                renderItem={({ item }) => <Card title={item.title} subTitle={"$" + item.price} imageUrl={item.image} />}
+                renderItem={({ item }) =>
+                    <TouchableWithoutFeedback onPress={() => navigation.navigate(routes.LISTING_DETAILS, { image: item.images[0].url, title: item.title, subTitle: item.price })}>
+                        <Card title={item.title} subTitle={"$" + item.price} imageUrl={item.images[0].url} />
+                    </TouchableWithoutFeedback>
+                }
 
             />
-        </Screen>
+
+        </>
+
     );
 }
 
-const styles = StyleSheet.create({
-    screen:
-    {
-        padding: 10,
-        backgroundColor: colors.light
-    }
-})
+
 
 export default ListingScreen;

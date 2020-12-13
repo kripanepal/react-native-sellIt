@@ -3,20 +3,21 @@ import { Text, View, StyleSheet, Image } from 'react-native';
 import colors from '../config/colors';
 import ListItem from '../components/ListItem';
 
-function ListingDetail(props) {
+function ListingDetail({ route }) {
+
     return (
 
         <View style={styles.container}>
             <View style={styles.imageView}>
 
                 <Image style={styles.image} resizeMode='cover' source={{
-                    uri: `https://picsum.photos/200/300`,
+                    uri: route.params.image,
 
                 }} />
             </View>
             <View style={styles.info}>
-                <Text style={styles.title} >title</Text>
-                <Text style={styles.subTitle} >subTitle</Text>
+                <Text style={styles.title} >{route.params.title}</Text>
+                <Text style={styles.subTitle} >{route.params.subTitle}</Text>
 
             </View>
             <ListItem profileImage={`https://picsum.photos/100/100`} title='Krip Nepal' subtitle='10 listings' />

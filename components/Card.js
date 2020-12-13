@@ -1,16 +1,15 @@
 import React from 'react';
-import { View, StyleSheet, Image, Text } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import colors from '../config/colors';
+import { Image } from 'react-native-expo-image-cache'
 
 function Card({ title = 'title', subTitle = 'sub title', imageUrl = 'https://picsum.photos/200/300' }) {
+
     return (
         <View style={styles.card}>
             <View style={styles.imageView}>
 
-                <Image style={styles.image} source={{
-                    uri: imageUrl,
-                    width: '100%', height: '100%'
-                }} />
+                <Image style={styles.image} uri={imageUrl} />
             </View>
             <View style={styles.info}>
 
