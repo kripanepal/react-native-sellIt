@@ -1,28 +1,41 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
+import { Text, View, StyleSheet, Image, ScrollView, Platform, KeyboardAvoidingView, Keyboard } from 'react-native';
 import colors from '../config/colors';
 import ListItem from '../components/ListItem';
+import ContactSellerForm from '../components/ContactSellerForm';
+import { useRef } from 'react';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 function ListingDetail({ route }) {
-
     return (
+        <KeyboardAwareScrollView
 
-        <View style={styles.container}>
-            <View style={styles.imageView}>
+            scrollEnabled={false}>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <View >
+                    <View style={styles.imageView}>
 
-                <Image style={styles.image} resizeMode='cover' source={{
-                    uri: route.params.image,
+                        <Image style={styles.image} resizeMode='cover' source={{
+                            uri: route.params.image,
 
-                }} />
-            </View>
-            <View style={styles.info}>
-                <Text style={styles.title} >{route.params.title}</Text>
-                <Text style={styles.subTitle} >{route.params.subTitle}</Text>
+                        }} />
+                    </View>
+                    <View style={styles.info}>
+                        <Text style={styles.title} >{route.params.title}</Text>
+                        <Text style={styles.subTitle} >{route.params.subTitle}</Text>
 
-            </View>
-            <ListItem profileImage={`https://picsum.photos/100/100`} title='Krip Nepal' subtitle='10 listings' />
-        </View>
+                    </View>
+                    <ListItem profileImage={`https://picsum.photos/100/100`} title='Krip Nepal' subtitle='10 listings' />
 
+                    <View style={{ paddingTop: 50 }}>
+                        <ContactSellerForm listingsId={route.params.listingId} />
+                    </View>
+
+                </View>
+            </TouchableWithoutFeedback>
+
+        </KeyboardAwareScrollView>
     );
 }
 
@@ -32,10 +45,7 @@ const styles = StyleSheet.create({
         height: '100%',
 
     },
-    container:
-    {
-        marginTop: 20, flex: 1,
-    },
+
     imageView:
     {
         borderRadius: 50, height: 400, width: '100%'

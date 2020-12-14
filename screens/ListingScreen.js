@@ -28,8 +28,8 @@ function ListingScreen({ navigation }) {
                 showsHorizontalScrollIndicator={false}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) =>
-                    <TouchableWithoutFeedback onPress={() => navigation.navigate(routes.LISTING_DETAILS, { image: item.images[0].url, title: item.title, subTitle: item.price })}>
-                        <Card title={item.title} subTitle={"$" + item.price} imageUrl={item.images[0].url} />
+                    <TouchableWithoutFeedback onPress={() => navigation.navigate(routes.LISTING_DETAILS, { image: item.images[0].url, title: item.title, subTitle: item.price, listingId: item.id })}>
+                        <Card title={item.title} subTitle={"$" + item.price} imageUrl={item.images[0].url} listingId={item.id} />
                     </TouchableWithoutFeedback>
                 }
 

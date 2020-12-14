@@ -11,16 +11,11 @@ import AccountNavigator from './AccountNavigator';
 import routes from './routes';
 import expoPushToken from '../api/expoPushToken';
 import navigation from './rootNavigation';
+import useNotification from '../hooks/useNotification';
 
 function HomeNavigator() {
-    console.log(navigation)
-    useEffect(() => {
-        registerForPushNotofications()
-        Notifications.addListener(notification => {
-            console.log(notification)
-            navigation.navigate('account')
-        })
-    }, [])
+
+    useNotification()
 
     const registerForPushNotofications = async () => {
 

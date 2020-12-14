@@ -23,8 +23,9 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF",
-        "useNextNotificationsApi": true
-      }
+      },
+      "package": "com.kripa.sellIt",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
